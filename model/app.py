@@ -87,24 +87,27 @@ def chat():
             ]
         )
 
-        
+        # print("JSON Response Data:", response.model_dump_json(indent=2))
+        print("Assistant Response Content:", response.choices[0].message.content)
 
-        print("JSON Response Data:", response.model_dump_json(indent=2))
-
-        if "choices" in response.data:
+        # if "choices" in response.data:
+        if hasattr(response, 'choices') and response.choices:
             # Trích xuất nội dung từ phản hồi OpenAI
-             assistant_response = response.data["choices"][0]["message"]["content"]
+            #  assistant_response = response.data["choices"][0]["message"]["content"]
+            assistant_response = response.choices[0].message.content
+             
         else:
             return jsonify({"error": "Invalid response format from OpenAI API"})
 
         # Update the response structure
         response_data = {
-            "id": response["id"],
-            "assistant_response": response["choices"][0]["message"]["content"]
+            "id": response.id,
+            "assistant_response": response.choices[0].message.content
         }
 
         # Return the response as JSON
-        return jsonify({"json_response_data": response.model_dump_json(indent=2)})
+        # return jsonify({"json_response_data": response.model_dump_json(indent=2)})
+        return jsonify({"json_response_data": response_data})
     except Exception as e:
         return jsonify({"error": str(e)})
 
