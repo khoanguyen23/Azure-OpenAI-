@@ -1,5 +1,6 @@
 # Azure-OpenAI
-
+## About The Project
+This is our project for the Azure OpenAI Service for Students Hackathon. Due to the limited timeframe, it's still a work in progress. Our team hopes that it can be of assistance to you in the future.
 ## To do
 - [x] Upload file PDF
 - [ ] Loading / exporting a conversation
